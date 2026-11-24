@@ -19,3 +19,20 @@ Each picture is cut from a photo of the real pieces at the yard.
 | B11 | Fluted square post | $15.00 each |
 | R1 | Hand rail, round edge | $15.00 per length |
 | R2 | Hand rail, wide flat | $15.00 per length |
+
+## Columns, capitals, finials and statues
+
+| Item | Piece |
+|---|---|
+| C1 | Fluted columns (installed) |
+| C2 | Corinthian capital |
+| C3 | Tuscan capital |
+| C4 | Waisted capital |
+| C5 | Ribbed column base |
+| C6 | Column base on plinth |
+| C7 | Square plinth base |
+| C8 | Ball finial |
+| C9 | Ball finial on pier cap |
+| C10 | Lion statue |
+
+Price on request. Custom designs made to order.
