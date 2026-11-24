@@ -49,3 +49,4 @@
 .card .chip { position: absolute; left: -14px; top: -18px; font-size: 52px; }
 .flash { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: #fff; opacity: 0; pointer-events: none; }
 .sh { text-shadow: 0 4px 18px rgba(0, 0, 0, 0.55); }
+.scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }

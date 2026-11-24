@@ -59,11 +59,11 @@
       [[0, 5, 0.8], [5, 8, 1.85], [8, 12, 2.8]].forEach(([a, b, t]) =>
         tl.fromTo(ch.slice(a, b), { yPercent: 112 }, { yPercent: 0, duration: 0.4, ease: "power4.out", stagger: 0.05 }, t));
       tl.fromTo("#s12-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 3.3);
-      tl.fromTo("#s12-ah-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.4);
-      tl.fromTo(FX.chars($("s12-ah")), { yPercent: 112 }, { yPercent: 0, duration: 0.4, ease: "power4.out", stagger: 0.02 }, 3.45);
-      tl.fromTo("#s12-hrs-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.7);
-      tl.fromTo(FX.words($("s12-hrs")), { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out", stagger: 0.05 }, 3.75);
-      tl.fromTo("#s12-web", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.95);
+      tl.fromTo("#s12-ah-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.3);
+      tl.fromTo(FX.chars($("s12-ah")), { yPercent: 112 }, { yPercent: 0, duration: 0.4, ease: "power4.out", stagger: 0.02 }, 2.35);
+      tl.fromTo("#s12-hrs-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.6);
+      tl.fromTo(FX.words($("s12-hrs")), { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out", stagger: 0.05 }, 2.65);
+      tl.fromTo("#s12-web", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.85);
       // a row of 3-hole blocks drops along the bottom
       const lands = [];
       for (let i = 0; i < 4; i++) {

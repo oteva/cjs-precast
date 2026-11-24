@@ -32,7 +32,7 @@
       tl.fromTo("#s07-c2", { x: 1150, rotation: 6 }, { x: 0, rotation: 1.2, duration: 0.45, ease: "expo.out" }, 0.26);
       tl.fromTo("#s07-price", { opacity: 0, scale: 1.25, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out" }, 0.82);
       FX.roll(tl, FX.odometer(document.querySelector("#s07-price .odo")), 0.82, 0.5, 0.06);
-      tl.fromTo("#s07-len", { opacity: 0, letterSpacing: "20px" }, { opacity: 1, letterSpacing: "6px", duration: 0.4, ease: "expo.out" }, 1.58);
+      tl.fromTo("#s07-len", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 1.58);
       window.__timelines["s07"] = tl;
     })();
   </script>
