@@ -1,0 +1,51 @@
+/* Shared look for the CJ's ad scenes (classes only; each scene styles its own #root). */
+:root {
+  --bg: #1c1d1a;
+  --fg: #ecebe5;
+  --muted: #a3a59c;
+  --line: #45473f;
+  --acc: #f0bd1c;
+  --dark: #1c1d1a;
+}
+.cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+.abs { position: absolute; }
+.disp { font-family: "Big Shoulders", sans-serif; font-weight: 900; color: var(--fg); white-space: nowrap; }
+.body { font-family: "Work Sans", sans-serif; }
+.eye { position: absolute; left: 70px; font-family: "Work Sans", sans-serif; font-weight: 600; font-size: 32px;
+       letter-spacing: 4px; color: var(--muted); white-space: nowrap; line-height: 1.2; }
+.acc { color: var(--acc); }
+.ln { display: block; }
+.mk { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0.03em 0.02em; margin: -0.06em -0.03em -0.02em; }
+.wb { display: inline-block; }
+.w { display: inline-block; will-change: transform; }
+.bar { position: absolute; left: 70px; height: 12px; background: var(--acc); transform-origin: 0 50%; }
+.blk { position: absolute; display: block; }
+.dust { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; pointer-events: none; }
+.dust i { position: absolute; display: block; opacity: 0; }
+.dust .puff { border-radius: 50%; background: radial-gradient(circle, rgba(199, 200, 192, 0.6) 0, rgba(199, 200, 192, 0.25) 45%, rgba(199, 200, 192, 0) 70%); }
+.dust .chip { background: #b9bab2; border-radius: 1px; }
+.odw { position: relative; display: inline-block; overflow: hidden; height: 1.08em; vertical-align: top; }
+.odz { visibility: hidden; display: inline-block; height: 1.08em; line-height: 1.08em; }
+.ods { position: absolute; left: -0.1em; right: -0.1em; top: 0; display: block; text-align: center; }
+.ods span { display: block; height: 1.08em; line-height: 1.08em; }
+.odc { display: inline-block; height: 1.08em; line-height: 1.08em; vertical-align: top; }
+.panel { position: absolute; left: -200px; top: -20px; width: 1480px; height: 1960px; background: var(--acc); }
+.panel .stripe { position: absolute; top: 0; bottom: 0; width: 18px; background: var(--dark); }
+
+/* 60 s ad additions: footage, shades for legible type over footage, item chips, photo cards, tags */
+.media { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
+.shade { position: absolute; left: 0; width: 1080px; pointer-events: none; }
+.shade.top { top: 0; height: 1150px; background: linear-gradient(180deg, rgba(14, 14, 12, 0.9) 0%, rgba(14, 14, 12, 0.62) 50%, rgba(14, 14, 12, 0) 100%); }
+.shade.bot { bottom: 0; height: 1150px; background: linear-gradient(0deg, rgba(14, 14, 12, 0.92) 0%, rgba(14, 14, 12, 0.62) 50%, rgba(14, 14, 12, 0) 100%); }
+.shade.all { top: 0; height: 1920px; background: rgba(14, 14, 12, 0.42); }
+.tag { position: absolute; left: 70px; font-family: "Work Sans", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: 4px;
+       color: rgba(236, 235, 229, 0.92); white-space: nowrap; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); }
+.tag b { color: var(--acc); font-weight: 700; }
+.chip { display: inline-block; font-family: "Big Shoulders", sans-serif; font-weight: 900; background: var(--acc); color: #1d1a10;
+        padding: 6px 16px 2px; border-radius: 6px; line-height: 1; white-space: nowrap; }
+.card { position: absolute; background: #fff; padding: 12px; border-radius: 6px; box-shadow: 0 22px 46px rgba(0, 0, 0, 0.5); }
+.card img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.card.cover img { object-fit: cover; }
+.card .chip { position: absolute; left: -14px; top: -18px; font-size: 52px; }
+.flash { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: #fff; opacity: 0; pointer-events: none; }
+.sh { text-shadow: 0 4px 18px rgba(0, 0, 0, 0.55); }

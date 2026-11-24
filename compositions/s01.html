@@ -1,0 +1,49 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s01-tag { top: 150px; }
+    #s01-title { position: absolute; left: 70px; top: 205px; font-size: 176px; line-height: 0.98; }
+    #s01-l2 { position: relative; display: inline-block; }
+    #s01-ul { position: absolute; left: 4px; right: 4px; bottom: 4px; height: 12px; background: var(--acc); transform-origin: 0 50%; }
+    #s01-flood { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: var(--acc); opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="s01" data-width="1080" data-height="1920">
+    <div id="s01-scene" class="clip" data-start="0" data-duration="2">
+      <video id="s01-v" class="media clip" src="assets/media/d1.mp4" data-start="0" data-duration="2" muted playsinline></video>
+      <div class="shade top"></div>
+      <div id="s01-cam" class="cam">
+        <div id="s01-tag" class="tag"><b>DESIGN IDEA</b> · BUILT WITH CJ’S PIECES</div>
+        <div id="s01-title" class="disp sh">
+          <div class="ln"><span class="wb"><span id="s01-w0" class="w">BUILDING</span></span> <span class="wb"><span id="s01-w1" class="w">IN</span></span></div>
+          <div class="ln acc"><span id="s01-l2"><span class="wb"><span id="s01-w2" class="w">ST</span></span> <span class="wb"><span id="s01-w3" class="w">VINCENT?</span></span><i id="s01-ul"></i></span></div>
+        </div>
+      </div>
+      <div id="s01-flood"></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      function build() {
+        const tl = gsap.timeline({ paused: true });
+        const root = $("s01-cam").getBoundingClientRect();
+        const u = $("s01-ul").getBoundingClientRect();
+        const ins = [u.top - root.top, root.right - u.right, root.bottom - u.bottom, u.left - root.left].map((v) => v.toFixed(1) + "px").join(" ");
+        // each word slams in as it is spoken (word times from the narration)
+        [["#s01-w0", 0.14], ["#s01-w1", 0.5], ["#s01-w2", 0.76], ["#s01-w3", 1.0]].forEach(([s, t]) =>
+          tl.fromTo(s, { scale: 1.6, opacity: 0, filter: "blur(14px)", transformOrigin: "50% 60%" },
+            { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, t));
+        tl.fromTo("#s01-tag", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 0.05);
+        tl.fromTo("#s01-ul", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 1.25);
+        tl.fromTo("#s01-v", { scale: 1 }, { scale: 1.06, duration: 2, ease: "none" }, 0);
+        // exit: the underline floods the frame yellow, the name scene wipes it away
+        tl.set("#s01-flood", { opacity: 1, clipPath: `inset(${ins})` }, 1.8);
+        tl.fromTo("#s01-flood", { clipPath: `inset(${ins})` }, { clipPath: "inset(0px 0px 0px 0px)", duration: 0.18, ease: "power3.in", immediateRender: false }, 1.8);
+        window.__timelines["s01"] = tl;
+      }
+      Promise.all([document.fonts.load('900 176px "Big Shoulders"'), document.fonts.load('600 28px "Work Sans"')]).then(build);
+    })();
+  </script>
+</template>

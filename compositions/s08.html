@@ -1,0 +1,46 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s08-title { position: absolute; left: 70px; top: 170px; font-size: 132px; line-height: 0.96; }
+    #s08 .card .chip, #s08-scene .card .chip { font-size: 46px; left: -10px; top: -14px; }
+    #s08-web { position: absolute; left: 70px; top: 1560px; font-size: 64px; line-height: 1; color: var(--dark); background: var(--acc); padding: 14px 26px 8px; border-radius: 8px; }
+  </style>
+  <div id="root" data-composition-id="s08" data-width="1080" data-height="1920">
+    <div id="s08-scene" class="clip" data-start="0" data-duration="3.2">
+      <div id="s08-cam" class="cam">
+        <div id="s08-title" class="disp">
+          <div class="ln"><span class="mk"><span id="s08-w0" class="w">PICK</span></span> <span class="mk"><span id="s08-w1" class="w">YOUR</span></span> <span class="mk"><span id="s08-w2" class="w">PIECE</span></span></div>
+          <div class="ln acc"><span class="mk"><span id="s08-w3" class="w">BY</span></span> <span class="mk"><span id="s08-w4" class="w">ITEM</span></span> <span class="mk"><span id="s08-w5" class="w">NUMBER</span></span></div>
+        </div>
+        <div id="s08-c1" class="card" style="left: 60px; top: 470px; width: 225px; height: 330px"><img src="assets/img/b1.jpg" alt="B1" /><span class="chip">B1</span></div>
+        <div id="s08-c2" class="card" style="left: 305px; top: 470px; width: 225px; height: 330px"><img src="assets/img/b2.jpg" alt="B2" /><span class="chip">B2</span></div>
+        <div id="s08-c3" class="card" style="left: 550px; top: 470px; width: 225px; height: 330px"><img src="assets/img/b3.jpg" alt="B3" /><span class="chip">B3</span></div>
+        <div id="s08-c4" class="card" style="left: 795px; top: 470px; width: 225px; height: 330px"><img src="assets/img/b4.jpg" alt="B4" /><span class="chip">B4</span></div>
+        <div id="s08-c5" class="card" style="left: 60px; top: 830px; width: 225px; height: 330px"><img src="assets/img/b5.jpg" alt="B5" /><span class="chip">B5</span></div>
+        <div id="s08-c6" class="card" style="left: 305px; top: 830px; width: 225px; height: 330px"><img src="assets/img/b6.jpg" alt="B6" /><span class="chip">B6</span></div>
+        <div id="s08-c7" class="card" style="left: 550px; top: 830px; width: 225px; height: 330px"><img src="assets/img/b7.jpg" alt="B7" /><span class="chip">B7</span></div>
+        <div id="s08-c8" class="card" style="left: 795px; top: 830px; width: 225px; height: 330px"><img src="assets/img/b8.jpg" alt="B8" /><span class="chip">B8</span></div>
+        <div id="s08-c9" class="card" style="left: 182px; top: 1190px; width: 225px; height: 330px"><img src="assets/img/b9.jpg" alt="B9" /><span class="chip">B9</span></div>
+        <div id="s08-c10" class="card" style="left: 427px; top: 1190px; width: 225px; height: 330px"><img src="assets/img/b10.jpg" alt="B10" /><span class="chip">B10</span></div>
+        <div id="s08-c11" class="card" style="left: 672px; top: 1190px; width: 225px; height: 330px"><img src="assets/img/b11.jpg" alt="B11" /><span class="chip">B11</span></div>
+        <div id="s08-web" class="disp">CJS-PRECAST.VERCEL.APP</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // "Pick" 0, "your" 0.6, "piece" 0.82, "by" 1.08, "item" 1.32, "number" 1.68, "on our website" 1.98-2.34
+      [0, 0.6, 0.82, 1.08, 1.32, 1.68].forEach((t, i) => tl.fromTo("#s08-w" + i, { yPercent: 112 }, { yPercent: 0, duration: 0.38, ease: "power4.out" }, t));
+      // the real pieces pop in rapid-fire, B1 to B11
+      for (let n = 1; n <= 11; n++) {
+        const t = 0.15 + (n - 1) * 0.11;
+        tl.fromTo("#s08-c" + n, { scale: 0.4, opacity: 0, rotation: n % 2 ? -8 : 8 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.38, ease: "back.out(1.8)" }, t);
+      }
+      tl.fromTo("#s08-web", { scale: 0.6, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 2.2);
+      window.__timelines["s08"] = tl;
+    })();
+  </script>
+</template>

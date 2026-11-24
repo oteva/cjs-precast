@@ -1,0 +1,56 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s10-a { position: absolute; inset: 0; }
+    #s10-lion { position: absolute; left: 290px; top: 420px; width: 500px; height: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
+    #s10-sw { position: absolute; left: 70px; top: 190px; font-size: 176px; line-height: 0.95; color: var(--acc); }
+    #s10-cap { position: absolute; left: 70px; top: 1480px; font-family: "Work Sans", sans-serif; font-weight: 600; font-size: 36px; letter-spacing: 4px; color: var(--fg); white-space: nowrap; }
+    #s10-cap .chip { font-size: 44px; margin-right: 14px; vertical-align: middle; }
+    #s10-b { position: absolute; inset: 0; opacity: 0; }
+    #s10-tag { top: 150px; }
+    #s10-stamp { position: absolute; left: 70px; top: 220px; background: var(--acc); color: var(--dark); font-size: 150px; line-height: 1; padding: 18px 30px 6px; transform-origin: 0% 50%; }
+    #s10-custom { position: absolute; left: 74px; top: 470px; font-size: 104px; line-height: 1; }
+    #s10-flash { z-index: 5; }
+  </style>
+  <div id="root" data-composition-id="s10" data-width="1080" data-height="1920">
+    <div id="s10-scene" class="clip" data-start="0" data-duration="3.5">
+      <div id="s10-a">
+        <img id="s10-lion" src="assets/media/c10_cut.png" alt="C10 lion statue" />
+        <div id="s10-sw" class="disp"><span class="mk"><span id="s10-w0" class="w">STATUES</span></span></div>
+        <div id="s10-cap"><span class="chip">C10</span>LION STATUE · SINGLY OR AS A PAIR</div>
+      </div>
+      <div id="s10-b">
+        <video id="s10-v" class="media clip" src="assets/media/d4.mp4" data-start="0.45" data-duration="3.05" muted playsinline></video>
+        <div class="shade top"></div>
+        <div id="s10-tag" class="tag"><b>DESIGN IDEA</b> · CJ’S FINIALS &amp; LIONS</div>
+        <div id="s10-stamp" class="disp"><span id="s10-m0">MADE</span> <span id="s10-m1">TO</span> <span id="s10-m2">ORDER</span></div>
+        <div id="s10-custom" class="disp sh"><span class="mk"><span id="s10-c0" class="w">CUSTOM</span></span> <span class="mk"><span id="s10-c1" class="w">DESIGNS</span></span> <span class="mk"><span id="s10-c2" class="w acc">TOO</span></span></div>
+      </div>
+      <div id="s10-flash" class="flash"></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // "statues" 0.04: the real lion drops in
+      tl.fromTo("#s10-lion", { y: -500, rotation: -6 }, { y: 0, rotation: 0, duration: 0.3, ease: "back.out(1.4)" }, 0.0);
+      tl.fromTo("#s10-w0", { yPercent: 112 }, { yPercent: 0, duration: 0.3, ease: "power4.out" }, 0.04);
+      tl.fromTo("#s10-cap", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "none" }, 0.1);
+      // cut to the design idea: gate pillars with CJ's finials and lions
+      tl.set("#s10-a", { opacity: 0 }, 0.45);
+      tl.set("#s10-b", { opacity: 1 }, 0.45);
+      tl.fromTo("#s10-flash", { opacity: 0.75 }, { opacity: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, 0.45);
+      tl.fromTo("#s10-tag", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.5);
+      // "made" 0.48, "to" 1.14, "order" 1.4: a stamp that fills in word by word
+      tl.fromTo("#s10-stamp", { scale: 1.6, opacity: 0, rotation: -2 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.3, ease: "expo.out" }, 0.48);
+      tl.fromTo(["#s10-m1"], { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none" }, 1.14);
+      tl.fromTo(["#s10-m2"], { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none" }, 1.4);
+      tl.fromTo("#s10-stamp", { scale: 1.08 }, { scale: 1, duration: 0.25, ease: "expo.out", immediateRender: false }, 1.4);
+      // "custom" 2.02, "designs" 2.28, "too" 2.78
+      [2.02, 2.28, 2.78].forEach((t, i) => tl.fromTo("#s10-c" + i, { yPercent: 112 }, { yPercent: 0, duration: 0.38, ease: "power4.out" }, t));
+      window.__timelines["s10"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,39 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s11-tag { top: 150px; }
+    #s11-l1 { position: absolute; left: 66px; top: 190px; font-size: 200px; line-height: 0.92; }
+    #s11-l2 { position: absolute; left: 70px; top: 390px; font-size: 112px; line-height: 1; }
+    #s11-l3 { position: absolute; left: 70px; top: 560px; font-size: 84px; line-height: 1; }
+    #s11-l4 { position: absolute; left: 70px; top: 650px; font-size: 84px; line-height: 1; }
+    #s11-l5 { position: absolute; left: 66px; top: 820px; font-size: 156px; line-height: 0.95; color: var(--acc); }
+    #s11-bar { top: 982px; width: 830px; }
+  </style>
+  <div id="root" data-composition-id="s11" data-width="1080" data-height="1920">
+    <div id="s11-scene" class="clip" data-start="0" data-duration="4.6">
+      <video id="s11-v" class="media clip" src="assets/media/v_yard.mp4" data-start="0" data-duration="4.6" muted playsinline></video>
+      <div class="shade top"></div>
+      <div id="s11-tag" class="tag"><b>REAL PIECES</b> · OUR YARD IN DIAMOND</div>
+      <div id="s11-l1" class="disp sh"><span class="mk"><span id="s11-w0" class="w">PICKUP</span></span></div>
+      <div id="s11-l2" class="disp sh"><span class="mk"><span id="s11-w1" class="w">AT</span></span> <span class="mk"><span id="s11-w2" class="w">OUR</span></span> <span class="mk"><span id="s11-w3" class="w">YARD</span></span></div>
+      <div id="s11-l3" class="disp sh"><span class="mk"><span id="s11-w4" class="w">OPPOSITE</span></span> <span class="mk"><span id="s11-w5" class="w">MYAH’S</span></span></div>
+      <div id="s11-l4" class="disp sh"><span class="mk"><span id="s11-w6" class="w">LUXURY</span></span> <span class="mk"><span id="s11-w7" class="w">SUITES</span></span> <span class="mk"><span id="s11-w8" class="w">HOTEL</span></span></div>
+      <div id="s11-l5" class="disp sh"><span class="mk"><span id="s11-w9" class="w">OR</span></span> <span class="mk"><span id="s11-w10" class="w">WE</span></span> <span class="mk"><span id="s11-w11" class="w">DELIVER</span></span></div>
+      <i id="s11-bar" class="bar"></i>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s11-v", { scale: 1.1 }, { scale: 1, duration: 4.6, ease: "none" }, 0);
+      tl.fromTo("#s11-tag", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.05);
+      // word times from the narration
+      [0.1, 0.4, 0.54, 0.68, 1.26, 1.48, 2.04, 2.44, 2.86, 3.14, 3.66, 3.92].forEach((t, i) =>
+        tl.fromTo("#s11-w" + i, { yPercent: 112 }, { yPercent: 0, duration: 0.38, ease: "power4.out" }, t));
+      tl.fromTo("#s11-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 4.05);
+      window.__timelines["s11"] = tl;
+    })();
+  </script>
+</template>

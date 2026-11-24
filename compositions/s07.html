@@ -1,0 +1,39 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s07-eye { top: 178px; }
+    #s07-title { position: absolute; left: 70px; top: 228px; font-size: 180px; line-height: 0.95; }
+    #s07-c1 { left: 90px; top: 520px; width: 900px; height: 195px; }
+    #s07-c2 { left: 90px; top: 800px; width: 900px; height: 234px; }
+    #s07-price { position: absolute; left: 66px; top: 1090px; font-size: 240px; line-height: 1; color: var(--acc); }
+    #s07-len { position: absolute; left: 76px; top: 1350px; font-family: "Work Sans", sans-serif; font-weight: 600; font-size: 40px; letter-spacing: 6px; color: var(--fg); }
+  </style>
+  <div id="root" data-composition-id="s07" data-width="1080" data-height="1920">
+    <div id="s07-scene" class="clip" data-start="0" data-duration="2.1">
+      <div id="s07-cam" class="cam">
+        <div id="s07-eye" class="eye">REAL PIECES · BY ITEM NUMBER</div>
+        <div id="s07-title" class="disp"><span class="mk"><span id="s07-w0" class="w">HAND</span></span> <span class="mk"><span id="s07-w1" class="w acc">RAILS</span></span></div>
+        <div id="s07-c1" class="card"><img src="assets/img/r1.jpg" alt="R1 hand rail, round edge" /><span class="chip">R1</span></div>
+        <div id="s07-c2" class="card"><img src="assets/img/r2.jpg" alt="R2 hand rail, wide flat" /><span class="chip">R2</span></div>
+        <div id="s07-price" class="disp"><span class="odo">$15</span></div>
+        <div id="s07-len">PER LENGTH</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s07-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0);
+      // "Handrails" 0.06, "fifteen dollars" 0.96, "a length" 1.62
+      tl.fromTo(["#s07-w0", "#s07-w1"], { yPercent: 112 }, { yPercent: 0, duration: 0.42, ease: "power4.out", stagger: 0.12 }, 0.04);
+      tl.fromTo("#s07-c1", { x: -1150, rotation: -6 }, { x: 0, rotation: -1.5, duration: 0.45, ease: "expo.out" }, 0.12);
+      tl.fromTo("#s07-c2", { x: 1150, rotation: 6 }, { x: 0, rotation: 1.2, duration: 0.45, ease: "expo.out" }, 0.26);
+      tl.fromTo("#s07-price", { opacity: 0, scale: 1.25, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out" }, 0.82);
+      FX.roll(tl, FX.odometer(document.querySelector("#s07-price .odo")), 0.82, 0.5, 0.06);
+      tl.fromTo("#s07-len", { opacity: 0, letterSpacing: "20px" }, { opacity: 1, letterSpacing: "6px", duration: 0.4, ease: "expo.out" }, 1.58);
+      window.__timelines["s07"] = tl;
+    })();
+  </script>
+</template>

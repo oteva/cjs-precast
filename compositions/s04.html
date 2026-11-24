@@ -1,0 +1,32 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s04-tag { top: 150px; }
+    #s04-title { position: absolute; left: 70px; top: 205px; font-size: 158px; line-height: 0.96; }
+  </style>
+  <div id="root" data-composition-id="s04" data-width="1080" data-height="1920">
+    <div id="s04-scene" class="clip" data-start="0" data-duration="2.5">
+      <video id="s04-v" class="media clip" src="assets/media/d3.mp4" data-start="0" data-duration="2.5" muted playsinline></video>
+      <div class="shade top"></div>
+      <div id="s04-tag" class="tag"><b>DESIGN IDEA</b> · CJ’S B6 LYRE BALUSTERS</div>
+      <div id="s04-title" class="disp sh">
+        <div class="ln"><span class="wb"><span id="s04-w0" class="w">NOW</span></span> <span class="wb"><span id="s04-w1" class="w">FINISH</span></span></div>
+        <div class="ln"><span class="wb"><span id="s04-w2" class="w">YOUR</span></span> <span class="wb"><span id="s04-w3" class="w">HOUSE</span></span></div>
+        <div class="ln acc"><span class="wb"><span id="s04-w4" class="w">IN</span></span> <span class="wb"><span id="s04-w5" class="w">STYLE</span></span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s04-v", { scale: 1.12, filter: "brightness(2)" }, { scale: 1, filter: "brightness(1)", duration: 0.5, ease: "expo.out" }, 0);
+      tl.fromTo("#s04-tag", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      [0.2, 0.42, 0.76, 1.04, 1.36, 1.58].forEach((t, i) =>
+        tl.fromTo("#s04-w" + i, { scale: 1.55, opacity: 0, filter: "blur(12px)", transformOrigin: "50% 60%" },
+          { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, t));
+      window.__timelines["s04"] = tl;
+    })();
+  </script>
+</template>

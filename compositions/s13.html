@@ -1,0 +1,48 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s13-img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #s13-tag { top: 150px; }
+    #s13-cj { position: absolute; left: 62px; top: 200px; font-size: 250px; line-height: 0.86; }
+    #s13-pre { position: absolute; left: 66px; top: 418px; font-size: 190px; line-height: 0.9; color: var(--acc); }
+    #s13-b1 { position: absolute; left: 70px; top: 680px; font-size: 112px; line-height: 1; }
+    #s13-b2 { position: absolute; left: 70px; top: 800px; font-size: 112px; line-height: 1; color: var(--acc); }
+    #s13-ph { position: absolute; left: 70px; top: 1010px; font-size: 118px; line-height: 1; color: var(--fg); }
+    #s13-sub { position: absolute; left: 74px; top: 1140px; font-family: "Work Sans", sans-serif; font-weight: 600; font-size: 34px; letter-spacing: 4px; color: var(--fg); white-space: nowrap; }
+    #s13-panel .stripe { left: 52px; }
+  </style>
+  <div id="root" data-composition-id="s13" data-width="1080" data-height="1920">
+    <div id="s13-scene" class="clip" data-start="0" data-duration="5.6">
+      <img id="s13-img" src="assets/media/d0.png" alt="" />
+      <div class="shade all"></div>
+      <div class="shade top"></div>
+      <div id="s13-tag" class="tag"><b>DESIGN IDEA</b> · YOUR HOUSE WITH CJ’S PIECES</div>
+      <div id="s13-cj" class="disp sh">CJ’S</div>
+      <div id="s13-pre" class="disp sh"><span class="mk"><span id="s13-pw" class="w">PRECAST</span></span></div>
+      <div id="s13-b1" class="disp sh"><span class="mk"><span id="s13-a0" class="w">BUILD</span></span> <span class="mk"><span id="s13-a1" class="w">IT</span></span> <span class="mk"><span id="s13-a2" class="w">STRONG.</span></span></div>
+      <div id="s13-b2" class="disp sh"><span class="mk"><span id="s13-a3" class="w">BUILD</span></span> <span class="mk"><span id="s13-a4" class="w">IT</span></span> <span class="mk"><span id="s13-a5" class="w">BEAUTIFUL.</span></span></div>
+      <div id="s13-ph" class="disp sh">+1 784 530 5097</div>
+      <div id="s13-sub" class="sh">CALL OR TEXT · PICKUP OR DELIVERY</div>
+      <div id="s13-panel" class="panel"><i class="stripe"></i></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s13-panel", { x: -35, skewX: -9.46 }, { x: 1480, skewX: -9.46, duration: 0.36, ease: "power3.out" }, 0);
+      tl.fromTo("#s13-img", { scale: 1 }, { scale: 1.1, duration: 5.6, ease: "none" }, 0);
+      tl.fromTo("#s13-tag", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.2);
+      // "CJ's" 0.18, "Precast" 0.82, "Build it strong" 1.92-2.22, "build it beautiful" 2.96-3.32
+      tl.fromTo(FX.chars($("s13-cj"), false), { opacity: 0, scale: 1.45, filter: "blur(16px)", transformOrigin: "50% 75%" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out", stagger: 0.05 }, 0.18);
+      tl.fromTo("#s13-pw", { yPercent: 112 }, { yPercent: 0, duration: 0.45, ease: "power4.out" }, 0.82);
+      [1.92, 2.06, 2.22, 2.96, 3.16, 3.32].forEach((t, i) => tl.fromTo("#s13-a" + i, { yPercent: 112 }, { yPercent: 0, duration: 0.38, ease: "power4.out" }, t));
+      tl.fromTo(FX.chars($("s13-ph")), { yPercent: 112 }, { yPercent: 0, duration: 0.45, ease: "power4.out", stagger: 0.025 }, 3.8);
+      tl.fromTo("#s13-sub", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 4.15);
+      window.__timelines["s13"] = tl;
+    })();
+  </script>
+</template>

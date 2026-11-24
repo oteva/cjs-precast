@@ -1,0 +1,22 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #bg-img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; display: block; }
+    #bg-band { position: absolute; left: 0; top: -300px; width: 700px; height: 2520px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0) 100%); }
+  </style>
+  <div id="root" data-composition-id="bg" data-width="1080" data-height="1920">
+    <div id="bg-scene" class="clip" data-start="0" data-duration="53.2">
+      <img id="bg-img" src="assets/img/bg.jpg" alt="" />
+      <div id="bg-band" data-layout-ignore></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // a soft light passes slowly across the concrete, once every 7 s
+      tl.fromTo("#bg-band", { x: -1000, rotation: 16 }, { x: 1400, rotation: 16, duration: 7, ease: "none", repeat: 7 }, 0);
+      window.__timelines["bg"] = tl;
+    })();
+  </script>
+</template>

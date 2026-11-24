@@ -1,0 +1,80 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s03-eye { top: 178px; }
+    #s03-title { position: absolute; left: 70px; top: 232px; font-size: 150px; line-height: 0.95; }
+    .s03-row { position: absolute; left: 0; width: 1080px; height: 150px; }
+    .s03-row .ico { position: absolute; left: 70px; }
+    .s03-row .lab { position: absolute; left: 330px; top: 0; font-size: 78px; line-height: 146px; }
+    .s03-row .pr { position: absolute; right: 180px; top: 20px; font-size: 90px; line-height: 1; color: var(--acc); }
+    .s03-row .each { position: absolute; right: 180px; top: 106px; font-family: "Work Sans", sans-serif; font-weight: 600;
+      font-size: 28px; letter-spacing: 4px; color: var(--muted); margin-right: -4px; }
+    .s03-row .rule { position: absolute; left: 70px; top: 146px; width: 830px; height: 3px; transform-origin: 0 50%;
+      background: repeating-linear-gradient(90deg, var(--line) 0 16px, transparent 16px 27px); }
+    #s03-wall { position: absolute; left: 0; top: 1180px; width: 1080px; height: 740px; overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 120px); mask-image: linear-gradient(to bottom, transparent 0, #000 120px); }
+    #s03-wall img { position: absolute; width: 309px; height: 173px; }
+  </style>
+  <div id="root" data-composition-id="s03" data-width="1080" data-height="1920">
+    <div id="s03-scene" class="clip" data-start="0" data-duration="12.7">
+      <div id="s03-cam" class="cam">
+        <div id="s03-wall" data-layout-ignore data-motion-blur="off">
+          <img id="s03-b0" src="assets/img/row0.png" alt="" />
+          <img id="s03-b1" src="assets/img/row1.png" alt="" />
+          <img id="s03-b2" src="assets/img/row2.png" alt="" />
+          <img id="s03-b3" src="assets/img/row3.png" alt="" />
+          <img id="s03-b4" src="assets/img/row4.png" alt="" />
+        </div>
+        <div id="s03-dust" class="dust" data-layout-ignore></div>
+        <div id="s03-eye" class="eye">CJ’S PRECAST · PRICES IN EC$</div>
+        <div id="s03-title" class="disp"><span class="wb"><span id="s03-t0" class="w">3-HOLE</span></span> <span class="wb"><span id="s03-t1" class="w acc">BLOCKS</span></span></div>
+        <div id="s03-r0" class="s03-row" style="top: 420px"><img class="ico" src="assets/img/ico4.png" alt="" style="width: 178px; top: 26px" /><div class="lab disp">4 INCH</div><div class="pr disp"><span class="odo">$3.00</span></div><div class="each">EACH</div><i class="rule"></i></div>
+        <div id="s03-r1" class="s03-row" style="top: 570px"><img class="ico" src="assets/img/ico6.png" alt="" style="width: 189px; top: 20px" /><div class="lab disp">6 INCH</div><div class="pr disp"><span class="odo">$3.75</span></div><div class="each">EACH</div><i class="rule"></i></div>
+        <div id="s03-r2" class="s03-row" style="top: 720px"><img class="ico" src="assets/img/ico8.png" alt="" style="width: 201px; top: 15px" /><div class="lab disp">8 INCH</div><div class="pr disp"><span class="odo">$4.75</span></div><div class="each">EACH</div><i class="rule"></i></div>
+        <div id="s03-r3" class="s03-row" style="top: 870px"><img class="ico" src="assets/img/ico10.png" alt="" style="width: 213px; top: 10px" /><div class="lab disp">10 INCH</div><div class="pr disp"><span class="odo">$5.75</span></div><div class="each">EACH</div><i class="rule"></i></div>
+        <div id="s03-r4" class="s03-row" style="top: 1020px"><img class="ico" src="assets/img/ico12.png" alt="" style="width: 224.5px; top: 5px" /><div class="lab disp">12 INCH</div><div class="pr disp"><span class="odo">$6.75</span></div><div class="each">EACH</div><i class="rule"></i></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const tl = gsap.timeline({ paused: true });
+      const cam = $("s03-cam");
+      const DUR = 12.7, FALL = 0.22, STAGE = 1180;
+      // entrance: arrives from below at the speed the name scene left
+      tl.fromTo(cam, { y: 1100 }, { y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#s03-eye", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+      // "three-hole" 0.14, "blocks" 1.26
+      tl.fromTo("#s03-t0", { scale: 1.5, opacity: 0, filter: "blur(12px)", transformOrigin: "50% 60%" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 0.14);
+      tl.fromTo("#s03-t1", { scale: 1.5, opacity: 0, filter: "blur(12px)", transformOrigin: "50% 60%" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 1.26);
+      // each size appears when it is said, its price rolls in when the price is said, and a block drops onto the pile
+      const LAB = [2.24, 3.9, 6.24, 8.36, 10.52], PRC = [3.08, 5.0, 7.04, 9.2, 11.42];
+      const spots = [{ fx: 137, fy: 1600 }, { fx: 387, fy: 1600 }, { fx: 637, fy: 1600 }, { fx: 262, fy: 1478 }, { fx: 512, fy: 1478 }];
+      const lands = [];
+      for (let i = 0; i < 5; i++) {
+        const row = $("s03-r" + i), t = LAB[i], p = PRC[i];
+        tl.fromTo(row.querySelector(".ico"), { x: -50, opacity: 0, filter: "blur(6px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, t);
+        tl.fromTo(row.querySelector(".lab"), { x: -70, opacity: 0, filter: "blur(8px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, t + 0.04);
+        tl.fromTo(row.querySelector(".rule"), { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, t + 0.08);
+        const pr = row.querySelector(".pr");
+        tl.fromTo(pr, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none" }, p - 0.45);
+        FX.roll(tl, FX.odometer(pr.querySelector(".odo")), p - 0.45, 0.6, 0.05);
+        tl.fromTo(row.querySelector(".each"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, p + 0.1);
+        const s = spots[i], el = $("s03-b" + i);
+        el.style.left = (s.fx - 2).toFixed(1) + "px";
+        el.style.top = (s.fy - 45 - STAGE).toFixed(1) + "px";
+        const hit = t + 0.3;
+        FX.drop(tl, el, hit - FALL, FALL, s.fy - 45 + 173 - STAGE + 300);
+        FX.dust(tl, $("s03-dust"), hit, s.fx, s.fx + 275, s.fy + 125, 70 + i);
+        lands.push(hit);
+      }
+      FX.shake(tl, cam, DUR, lands, 5);
+      // exit: whip up
+      tl.fromTo(cam, { y: 0 }, { y: -900, duration: 0.2, ease: "power3.in", immediateRender: false }, 12.5);
+      window.__timelines["s03"] = tl;
+    })();
+  </script>
+</template>

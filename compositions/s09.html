@@ -1,0 +1,61 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    .s09-seg { position: absolute; inset: 0; opacity: 0; }
+    .s09-word { position: absolute; left: 70px; top: 190px; font-size: 176px; line-height: 0.95; color: var(--acc); }
+    .s09-cap { position: absolute; left: 70px; top: 1480px; font-family: "Work Sans", sans-serif; font-weight: 600; font-size: 36px; letter-spacing: 4px; color: var(--fg); white-space: nowrap; }
+    .s09-cap .chip { font-size: 44px; margin-right: 14px; vertical-align: middle; }
+    #s09-p1 { left: 60px; top: 420px; width: 960px; height: 1020px; }
+    #s09-cut2 { position: absolute; left: 140px; top: 470px; width: 800px; height: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
+    #s09-p5 { left: 60px; top: 470px; width: 470px; height: 590px; }
+    #s09-p6 { left: 550px; top: 470px; width: 470px; height: 590px; }
+    #s09-p9 { left: 60px; top: 420px; width: 960px; height: 1020px; }
+    #s09-flash { z-index: 5; }
+  </style>
+  <div id="root" data-composition-id="s09" data-width="1080" data-height="1920">
+    <div id="s09-scene" class="clip" data-start="0" data-duration="3.5">
+      <div id="s09-a" class="s09-seg">
+        <div id="s09-p1" class="card cover"><img src="assets/img/c1.jpg" alt="C1 fluted columns on a balcony" /></div>
+        <div class="s09-word disp"><span class="mk"><span id="s09-wa" class="w">COLUMNS</span></span></div>
+        <div class="s09-cap"><span class="chip">C1</span>FLUTED COLUMNS · REAL INSTALL</div>
+      </div>
+      <div id="s09-b" class="s09-seg">
+        <img id="s09-cut2" src="assets/media/c2_cut.png" alt="C2 Corinthian capital" />
+        <div class="s09-word disp"><span class="mk"><span id="s09-wb" class="w">CAPITALS</span></span></div>
+        <div class="s09-cap"><span class="chip">C2</span>CORINTHIAN CAPITAL · COLUMN TOP</div>
+      </div>
+      <div id="s09-c" class="s09-seg">
+        <div id="s09-p5" class="card cover"><img src="assets/img/c5.jpg" alt="C5 ribbed column base" /><span class="chip">C5</span></div>
+        <div id="s09-p6" class="card cover"><img src="assets/img/c6.jpg" alt="C6 column base on plinth" /><span class="chip">C6</span></div>
+        <div class="s09-word disp"><span class="mk"><span id="s09-wc" class="w">COLUMN BASES</span></span></div>
+        <div class="s09-cap" style="top: 1110px">COLUMN BOTTOMS · MADE TO ORDER</div>
+      </div>
+      <div id="s09-d" class="s09-seg">
+        <div id="s09-p9" class="card cover"><img src="assets/img/c9.jpg" alt="C9 ball finial on pier cap" /></div>
+        <div class="s09-word disp"><span class="mk"><span id="s09-wd" class="w">FINIALS</span></span></div>
+        <div class="s09-cap"><span class="chip">C9</span>BALL FINIAL ON PIER CAP</div>
+      </div>
+      <div id="s09-flash" class="flash"></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // one real piece per word: "Columns" 0.08, "capitals" 0.86, "column bases" 1.8, "finials" 2.84
+      const segs = [["#s09-a", "#s09-wa", 0.0, 0.8], ["#s09-b", "#s09-wb", 0.8, 1.74], ["#s09-c", "#s09-wc", 1.74, 2.78], ["#s09-d", "#s09-wd", 2.78, 3.5]];
+      segs.forEach(([seg, word, a, b], i) => {
+        tl.set(seg, { opacity: 1 }, a);
+        if (i < 3) tl.set(seg, { opacity: 0 }, b);
+        tl.fromTo(seg, { scale: 1.12, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, a);
+        tl.fromTo(word, { yPercent: 112 }, { yPercent: 0, duration: 0.35, ease: "power4.out" }, a + 0.06);
+        tl.fromTo("#s09-flash", { opacity: 0.7 }, { opacity: 0, duration: 0.18, ease: "power2.out", immediateRender: false }, a);
+      });
+      tl.fromTo("#s09-cut2", { y: -260, rotation: -8 }, { y: 0, rotation: 0, duration: 0.35, ease: "back.out(1.6)" }, 0.8);
+      tl.fromTo("#s09-p5", { x: -600 }, { x: 0, duration: 0.35, ease: "expo.out" }, 1.74);
+      tl.fromTo("#s09-p6", { x: 600 }, { x: 0, duration: 0.35, ease: "expo.out" }, 1.8);
+      window.__timelines["s09"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,83 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s12-row { position: absolute; left: 0; top: 1180px; width: 1080px; height: 740px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 140px); mask-image: linear-gradient(to bottom, transparent 0, #000 140px); }
+    #s12-row img { position: absolute; width: 231px; height: 129px; }
+    #s12-eye { top: 204px; }
+    #s12-cta { position: absolute; left: 70px; top: 266px; font-size: 190px; line-height: 0.92; }
+    #s12-phone, #s12-shine { position: absolute; left: 70px; top: 636px; font-size: 122px; line-height: 1; }
+    #s12-phone { color: var(--acc); }
+    #s12-shine { color: transparent; background: linear-gradient(104deg, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0) 58%);
+      background-size: 260% 100%; background-position: 100% 0%; -webkit-background-clip: text; background-clip: text; }
+    #s12-bar { top: 772px; width: 830px; height: 10px; }
+    #s12-ah-eye { top: 812px; font-size: 30px; }
+    #s12-ah { position: absolute; left: 70px; top: 854px; font-size: 96px; line-height: 1; }
+    #s12-hrs-eye { top: 990px; font-size: 28px; letter-spacing: 5px; }
+    #s12-hrs { position: absolute; left: 70px; top: 1030px; font-size: 40px; font-weight: 500; color: var(--fg); white-space: nowrap; }
+    #s12-web { position: absolute; left: 70px; top: 1100px; font-size: 40px; font-weight: 600; color: var(--acc); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="s12" data-width="1080" data-height="1920">
+    <div id="s12-scene" class="clip" data-start="0" data-duration="4.8">
+      <div id="s12-cam" class="cam">
+        <div id="s12-row" data-layout-ignore data-motion-blur="off">
+          <img id="s12-b0" src="assets/img/row0.png" alt="" />
+          <img id="s12-b1" src="assets/img/row1.png" alt="" />
+          <img id="s12-b2" src="assets/img/row2.png" alt="" />
+          <img id="s12-b3" src="assets/img/row3.png" alt="" />
+        </div>
+        <div id="s12-dust" class="dust" data-layout-ignore></div>
+        <div id="s12-eye" class="eye">CJ’S PRECAST · ORDER TODAY</div>
+        <div id="s12-cta" class="disp">
+          <div class="ln"><span class="mk"><span id="s12-w0" class="w">CALL</span></span> <span class="mk"><span id="s12-w1" class="w">OR</span></span></div>
+          <div class="ln"><span class="mk"><span id="s12-w2" class="w">TEXT</span></span></div>
+        </div>
+        <div id="s12-phone" class="disp">+1 784 530 5097</div>
+        <div id="s12-shine" class="disp" aria-hidden="true" data-layout-allow-occlusion>+1 784 530 5097</div>
+        <i id="s12-bar" class="bar"></i>
+        <div id="s12-ah-eye" class="eye">AFTER HOURS, OR IF WE MISS YOUR CALL</div>
+        <div id="s12-ah" class="disp">+1 430 277 9613</div>
+        <div id="s12-hrs-eye" class="eye">YARD HOURS</div>
+        <p id="s12-hrs" class="body">Mon–Fri 9am–4pm · Sat by arrangement</p>
+        <p id="s12-web" class="body">cjs-precast.vercel.app</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const DUR = 4.8, FALL = 0.22, STAGE = 1180;
+      const tl = gsap.timeline({ paused: true });
+      const cam = $("s12-cam");
+      tl.fromTo(cam, { y: 1100 }, { y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#s12-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.1);
+      // "Call" 0.16, "or" 0.4, "text" 0.58
+      [0.16, 0.4, 0.58].forEach((t, i) => tl.fromTo("#s12-w" + i, { yPercent: 112 }, { yPercent: 0, duration: 0.4, ease: "power4.out" }, t));
+      // the number arrives in the groups it is read in: "+1 784" 0.86, "530" 1.9, "5097" 2.84
+      const ch = FX.chars($("s12-phone"));
+      [[0, 5, 0.8], [5, 8, 1.85], [8, 12, 2.8]].forEach(([a, b, t]) =>
+        tl.fromTo(ch.slice(a, b), { yPercent: 112 }, { yPercent: 0, duration: 0.4, ease: "power4.out", stagger: 0.05 }, t));
+      tl.fromTo("#s12-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 3.3);
+      tl.fromTo("#s12-ah-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.4);
+      tl.fromTo(FX.chars($("s12-ah")), { yPercent: 112 }, { yPercent: 0, duration: 0.4, ease: "power4.out", stagger: 0.02 }, 3.45);
+      tl.fromTo("#s12-hrs-eye", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.7);
+      tl.fromTo(FX.words($("s12-hrs")), { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out", stagger: 0.05 }, 3.75);
+      tl.fromTo("#s12-web", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.95);
+      // a row of 3-hole blocks drops along the bottom
+      const lands = [];
+      for (let i = 0; i < 4; i++) {
+        const fx = 156 + i * 180, fy = 1390, el = $("s12-b" + i);
+        el.style.left = (fx - 2).toFixed(1) + "px";
+        el.style.top = (fy - 39 - STAGE).toFixed(1) + "px";
+        const hit = 0.5 + i * 0.12;
+        FX.drop(tl, el, hit - FALL, FALL, fy - 39 + 129 - STAGE + 300);
+        FX.dust(tl, $("s12-dust"), hit, fx, fx + 205, fy + 90, 90 + i);
+        lands.push(hit);
+      }
+      FX.shake(tl, cam, DUR, lands, 3.5);
+      tl.fromTo("#s12-shine", { backgroundPosition: "100% 0%" }, { backgroundPosition: "0% 0%", duration: 0.8, ease: "power2.inOut" }, 4.0);
+      window.__timelines["s12"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,48 @@
+<template>
+  <style>
+    @font-face { font-family: "Big Shoulders"; src: url("assets/fonts/BigShoulders.ttf") format("truetype"); font-weight: 100 900; }
+    @font-face { font-family: "Work Sans"; src: url("assets/fonts/WorkSans.ttf") format("truetype"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; }
+    #s02-cj { position: absolute; left: 62px; top: 1030px; font-size: 240px; line-height: 0.86; }
+    #s02-name { position: absolute; left: 70px; top: 1250px; font-size: 92px; line-height: 1; }
+    #s02-bar { top: 1448px; width: 830px; }
+    #s02-loc { position: absolute; left: 70px; top: 1474px; font-size: 58px; line-height: 1; }
+    #s02-panel .stripe { left: 52px; }
+  </style>
+  <div id="root" data-composition-id="s02" data-width="1080" data-height="1920">
+    <div id="s02-scene" class="clip" data-start="0" data-duration="3">
+      <video id="s02-v" class="media clip" src="assets/media/mason.mp4" data-start="0" data-duration="3" muted playsinline></video>
+      <div class="shade bot"></div>
+      <div id="s02-cam" class="cam">
+        <div id="s02-cj" class="disp sh">CJ’S</div>
+        <div id="s02-name" class="disp acc sh">
+          <div id="s02-n1" class="ln">PRECAST CONCRETE</div>
+          <div id="s02-n2" class="ln">SUPPLY</div>
+        </div>
+        <i id="s02-bar" class="bar"></i>
+        <div id="s02-loc" class="disp sh">IN DIAMOND, ST VINCENT</div>
+      </div>
+      <div id="s02-panel" class="panel"><i class="stripe"></i></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s02-panel", { x: -35, skewX: -9.46 }, { x: 1480, skewX: -9.46, duration: 0.36, ease: "power3.out" }, 0);
+      const cj = FX.chars($("s02-cj"), false);
+      tl.fromTo(cj, { opacity: 0, scale: 1.45, filter: "blur(16px)", transformOrigin: "50% 75%" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out", stagger: 0.05 }, 0.0);
+      // "Precast" 0.42, "Concrete" 0.98, "Supply" 1.44, "in Diamond" 2.18
+      const name = [...FX.words($("s02-n1"), true), ...FX.words($("s02-n2"), true)];
+      [0.42, 0.98, 1.44].forEach((t, i) => tl.fromTo(name[i], { yPercent: 112 }, { yPercent: 0, duration: 0.5, ease: "power4.out" }, t));
+      tl.fromTo("#s02-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 2.1);
+      tl.fromTo(FX.words($("s02-loc"), true), { yPercent: 112 }, { yPercent: 0, duration: 0.45, ease: "power4.out", stagger: 0.07 }, 2.18);
+      tl.fromTo("#s02-v", { scale: 1.04 }, { scale: 1, duration: 3, ease: "none" }, 0);
+      // exit: a fast whip upward into the price list
+      tl.fromTo("#s02-cam", { y: 0 }, { y: -700, duration: 0.18, ease: "power3.in" }, 2.82);
+      tl.fromTo("#s02-v", { yPercent: 0 }, { yPercent: -30, duration: 0.18, ease: "power3.in", immediateRender: false }, 2.82);
+      window.__timelines["s02"] = tl;
+    })();
+  </script>
+</template>
